@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Room;
+use App\Models\Sewa;
 use App\Models\User;
 use App\Models\Pengaduan;
 use Illuminate\Support\Facades\Route;
@@ -56,7 +57,8 @@ use App\Http\Controllers\PemesananController;
             $user = User::count();
             $customer = User::where('role', 'customer')->count();
             $room = Room::count();
-            return view('Page.System.Admin.Dashboard.Index', ['user' => $user, 'customer' => $customer, 'room' => $room]);
+            $sewa = Sewa::count();
+            return view('Page.System.Admin.Dashboard.Index', ['user' => $user, 'customer' => $customer, 'room' => $room, 'pesanan' => $sewa]);
         })->name('admin.dashboard');
 
         Route::prefix('user')->group(function(){
